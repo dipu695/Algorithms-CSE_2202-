@@ -1,4 +1,4 @@
-//knapsac(0-1)
+//knapsack(0-1)
 #include <bits/stdc++.h>
 using namespace std;
 

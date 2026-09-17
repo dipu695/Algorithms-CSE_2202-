@@ -1,17 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
-void mergeSort(vector<int> &arr, int st, int end)
-{
-    if (st < end)
-    {
-        int mid = st + (end - st) / 2;
-        mergeSort(arr, st, mid);      // left half
-        mergeSort(arr, mid + 1, end); // right half
-        merge(arr, st, mid, end);
-    }
-}
 void merge(vector<int> &arr, int st, int mid, int end)
 {
     vector<int> temp;
@@ -29,25 +18,39 @@ void merge(vector<int> &arr, int st, int mid, int end)
             j++;
         }
     }
-    while(i <= mid){
+    while (i <= mid)
+    {
         temp.push_back(arr[i]);
         i++;
     }
-    while(j <= end){
+    while (j <= end)
+    {
         temp.push_back(arr[j]);
         j++;
     }
-    for(int idx = 0 ; idx < temp.size() ; idx++){
-        arr[idx+st] = temp[idx];
+    for (int idx = 0; idx < temp.size(); idx++)
+    {
+        arr[idx + st] = temp[idx];
+    }
+}
+void mergeSort(vector<int> &arr, int st, int end)
+{
+    if (st < end)
+    {
+        int mid = st + (end - st) / 2;
+        mergeSort(arr, st, mid);      // left half
+        mergeSort(arr, mid + 1, end); // right half
+        merge(arr, st, mid, end);
     }
 }
 
 int main()
 {
-    vector<int>arr = {20 , 9 , 1 , 5 , 70 , 60};
-    mergeSort(arr  , 0 , arr.size()-1);
-    for(int val : arr){
-        cout << val <<" ";
+    vector<int> arr = {20, 9, 1, 5, 70, 60};
+    mergeSort(arr, 0, arr.size() - 1);
+    for (int val : arr)
+    {
+        cout << val << " ";
     }
     cout << endl;
     return 0;

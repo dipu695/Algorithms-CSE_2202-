@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+int main()
+{
     int n;
     float capacity, maxProfit = 0;
 
@@ -12,15 +13,19 @@ int main() {
     vector<float> weight(n), profit(n), ratio(n), x(n, 0.0);
 
     cout << "Enter weight and profit for each item:\n";
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         cin >> weight[i] >> profit[i];
         ratio[i] = profit[i] / weight[i];
     }
 
     // Sort items by ratio in descending order
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if (ratio[i] < ratio[j]) {
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (ratio[i] < ratio[j])
+            {
                 swap(ratio[i], ratio[j]);
                 swap(weight[i], weight[j]);
                 swap(profit[i], profit[j]);
@@ -29,12 +34,16 @@ int main() {
     }
 
     // Greedy choice
-    for (int i = 0; i < n && capacity > 0; i++) {
-        if (weight[i] <= capacity) {
+    for (int i = 0; i < n && capacity > 0; i++)
+    {
+        if (weight[i] <= capacity)
+        {
             x[i] = 1.0;
             maxProfit += profit[i];
             capacity -= weight[i];
-        } else {
+        }
+        else
+        {
             x[i] = capacity / weight[i];
             maxProfit += x[i] * profit[i];
             capacity = 0;
@@ -42,7 +51,8 @@ int main() {
     }
 
     cout << "\nResult vector: ";
-    for (int i = 0; i < n; i++) cout << x[i] << " ";
+    for (int i = 0; i < n; i++)
+        cout << x[i] << " ";
     cout << "\nMaximum profit: " << maxProfit << endl;
 
     return 0;
